@@ -1,2 +1,45 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
+
+<%= @list.name %>
+<%= image_tag @list.image_url, alt: @list.name, class: 'list-image' %>
+
+<h2>Movies in this List:</h2>
+<ul>
+  <% @list.bookmarks.each do |bookmark| %>
+    <% movie = bookmark.movie %> <!-- Access the associated movie -->
+    <li>
+      <h3><%= movie.title %></h3>
+      <p><%= movie.overview %></p>
+      <%= image_tag movie.poster_url, alt: movie.title, class: 'movie-poster' %>
+      <p>Rating: <%= movie.rating %></p>
+      <p><%= bookmark.comment %></p> <!-- Display any comments related to the bookmark -->
+    </li>
+  <% end %>
+</ul>
+
+<h2>Add a Movie to this List</h2>
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment, placeholder: "Enter a comment about the movie" %>
+
+  <%= f.association :movie, collection: Movie.all, label_method: :title, value_method: :id, prompt: "Select a Movie" %>
+
+  <%= f.submit "Add Movie", class: "btn btn-flat" %>
+<% end %>
+
+<h2>Reviews</h2>
+<ul>
+  <% @list.reviews.each do |review| %>
+    <li>
+      <h3><%= review.rating %></h3>
+      <p><%= review.content %></p>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Add your review</h2>
+<%= simple_form_for [@list, @review] do |f| %>
+  <%= f.input :content, placeholder: "Enter a review for the list" %>
+
+  <%= f.input :rating, label: "Rating (0-5)", input_html: { min: 0, max: 5, step: 1 } %>
+
+  <%= f.submit "Add Review", class: "btn btn-flat" %>
+<% end %>
