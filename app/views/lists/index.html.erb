@@ -1,16 +1,19 @@
 
+<div class="banner mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.adsttc.com/media/images/58d5/3a58/e58e/ce48/a700/003f/slideshow/002.jpg);">
+  <div class="container">
+    <h1 class="d-flex justify-content-center">Save any kind of movies</h1>
+  </div>
+</div>
 
-
-
+<div class= "d-flex mx-4 justify-content-around mb-5">
 <h1>My Lists</h1>
-
-<ul>
-  <% @lists.each do |list| %>
-    <li>
-      <%= link_to list.name, list_path(list) %>
-      <%= image_tag list.image_url, alt: list.name, class: 'list-thumbnail' %>
-    </li>
-  <% end %>
-</ul>
-
 <%= link_to 'Create a movie list', new_list_path, class: "btn btn-danger" %>
+</div>
+
+<div class="cards mb-5 ml-3 mr-3">
+  <% @lists.each do |list| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.image_url %>)">
+      <%= link_to list.name, list_path(list) %>
+    </div>
+  <% end %>
+</div>

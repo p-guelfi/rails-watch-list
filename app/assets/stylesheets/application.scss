@@ -15,3 +15,12 @@
 .movie-poster {
   width: 300px;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: grey;
+  }
+}
