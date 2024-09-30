@@ -72,3 +72,5 @@ gem "sassc-rails"
 
 gem "dotenv-rails"
 gem "cloudinary"
+
+gem "ffi", "< 1.17.0"
