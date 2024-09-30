@@ -27,6 +27,7 @@ class BookmarksController < ApplicationController
       redirect_to list_path(@list), notice: 'Bookmark was successfully created.'
     else
       @movies = Movie.all # Make sure you load the movies for the form
+      @review = Review.new
       render 'lists/show', status: :unprocessable_entity
     end
   end
